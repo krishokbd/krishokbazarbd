@@ -1,7 +1,9 @@
-import { Search, ShoppingCart, User, Sprout, Menu, X, Globe } from "lucide-react";
+import { Search, ShoppingCart, Sprout, Menu, X, Globe } from "lucide-react";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
+import { UserMenu } from "@/components/UserMenu";
+import { Link } from "@tanstack/react-router";
 
 const LOGO = "https://cdn.shopify.com/s/files/1/0991/0717/6761/files/Gemini_Generated_Image_k0x5bek0x5bek0x5.png?v=1778673806";
 
@@ -49,8 +51,10 @@ export function Header() {
             </button>
 
             <div className="hidden md:flex items-center gap-2">
-              <Button variant="ghost" size="sm" className="gap-1.5"><User className="h-4 w-4" />{tr("customerLogin")}</Button>
-              <Button size="sm" className="gap-1.5 bg-leaf-gradient shadow-soft"><Sprout className="h-4 w-4" />{tr("farmerLogin")}</Button>
+              <Button asChild variant="ghost" size="sm" className="gap-1.5">
+                <Link to="/auth"><Sprout className="h-4 w-4" />{tr("farmerLogin")}</Link>
+              </Button>
+              <UserMenu />
             </div>
 
             <button className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-muted" onClick={() => setOpen(!open)} aria-label="Menu">
@@ -72,8 +76,9 @@ export function Header() {
         {/* Mobile menu */}
         {open && (
           <div className="md:hidden border-t border-border/60 py-3 space-y-2">
-            <Button variant="ghost" size="sm" className="w-full justify-start gap-2"><User className="h-4 w-4" />{tr("customerLogin")}</Button>
-            <Button size="sm" className="w-full justify-start gap-2 bg-leaf-gradient"><Sprout className="h-4 w-4" />{tr("farmerLogin")}</Button>
+            <Button asChild size="sm" className="w-full justify-start gap-2 bg-leaf-gradient">
+              <Link to="/auth"><Sprout className="h-4 w-4" />Sign in / Sign up</Link>
+            </Button>
             <button
               onClick={() => setLang(lang === "bn" ? "en" : "bn")}
               className="w-full text-left rounded-md px-3 py-2 text-sm bg-muted/60 flex items-center gap-2"

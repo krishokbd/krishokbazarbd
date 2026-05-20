@@ -33,9 +33,9 @@ export function Footer() {
           <div>
             <h4 className={`font-semibold mb-4 ${lang === "bn" ? "font-bn" : ""}`}>{tr("contact")}</h4>
             <ul className="space-y-2 text-sm opacity-80">
-              <li className="flex items-center gap-2"><Phone className="h-4 w-4" /> 01931355398</li>
-              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> hello@krishokbazar.com</li>
-              <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Dhaka, Bangladesh</li>
+              <li className="flex items-center gap-2"><Phone className="h-4 w-4" /><span>01931355398</span></li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /><span>hello@krishokbazar.com</span></li>
+              <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /><span>Dhaka, Bangladesh</span></li>
             </ul>
           </div>
 

@@ -14,6 +14,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Pencil, Plus, Trash2, CheckCircle2, XCircle, ArrowLeft, RotateCcw } from "lucide-react";
+import { useAuth } from "@/lib/auth";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin CMS — Krishok Bazar" }, { name: "robots", content: "noindex" }] }),
@@ -22,10 +23,42 @@ export const Route = createFileRoute("/admin")({
 
 function AdminPage() {
   return (
-    <StoreProvider>
-      <AdminShell />
-    </StoreProvider>
+    <AdminGuard>
+      <StoreProvider>
+        <AdminShell />
+      </StoreProvider>
+    </AdminGuard>
   );
+}
+
+function AdminGuard({ children }: { children: ReactNode }) {
+  const { user, isAdmin, loading } = useAuth();
+  if (loading) {
+    return <div className="min-h-screen grid place-items-center text-muted-foreground">Loading…</div>;
+  }
+  if (!user) {
+    return (
+      <div className="min-h-screen grid place-items-center px-4">
+        <div className="text-center space-y-3">
+          <h1 className="text-xl font-semibold">Sign in required</h1>
+          <p className="text-sm text-muted-foreground">You must be signed in as an admin.</p>
+          <Button asChild><Link to="/auth">Go to sign in</Link></Button>
+        </div>
+      </div>
+    );
+  }
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen grid place-items-center px-4">
+        <div className="text-center space-y-3">
+          <h1 className="text-xl font-semibold">Admin access required</h1>
+          <p className="text-sm text-muted-foreground">Your account does not have admin privileges.</p>
+          <Button asChild variant="outline"><Link to="/">Back to site</Link></Button>
+        </div>
+      </div>
+    );
+  }
+  return <>{children}</>;
 }
 
 function AdminShell() {
