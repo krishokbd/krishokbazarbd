@@ -77,6 +77,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "দালাল ছাড়া বাজার — সরাসরি কৃষকের কাছ থেকে। Bangladesh's farmer-to-customer marketplace." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "কৃষক বাজার — Krishok Bazar" },
+      { name: "twitter:title", content: "কৃষক বাজার — Krishok Bazar" },
+      { property: "og:description", content: "দালাল ছাড়া বাজার — সরাসরি কৃষকের কাছ থেকে। Bangladesh's farmer-to-customer marketplace." },
+      { name: "twitter:description", content: "দালাল ছাড়া বাজার — সরাসরি কৃষকের কাছ থেকে। Bangladesh's farmer-to-customer marketplace." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/fhRtoX1l11e7HfC1pTpaFev2hHT2/social-images/social-1779309520324-Gemini_Generated_Image_yq45cryq45cryq45.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/fhRtoX1l11e7HfC1pTpaFev2hHT2/social-images/social-1779309520324-Gemini_Generated_Image_yq45cryq45cryq45.webp" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
