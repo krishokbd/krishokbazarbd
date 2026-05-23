@@ -15,6 +15,7 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogT
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Pencil, Plus, Trash2, CheckCircle2, XCircle, ArrowLeft, RotateCcw } from "lucide-react";
 import { useAuth } from "@/lib/auth";
+import { ApplicationsTab } from "@/components/admin/ApplicationsTab";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin CMS — Krishok Bazar" }, { name: "robots", content: "noindex" }] }),
@@ -82,14 +83,16 @@ function AdminShell() {
 
       <main className="container mx-auto px-4 py-6">
         <DashboardStats />
-        <Tabs defaultValue="products" className="mt-6">
+        <Tabs defaultValue="applications" className="mt-6">
           <TabsList className="flex flex-wrap h-auto">
+            <TabsTrigger value="applications">Applications</TabsTrigger>
             <TabsTrigger value="products">Products</TabsTrigger>
             <TabsTrigger value="farmers">Farmers</TabsTrigger>
             <TabsTrigger value="categories">Categories</TabsTrigger>
             <TabsTrigger value="reviews">Reviews</TabsTrigger>
             <TabsTrigger value="banners">Banners</TabsTrigger>
           </TabsList>
+          <TabsContent value="applications"><ApplicationsTab /></TabsContent>
           <TabsContent value="products"><ProductsTab /></TabsContent>
           <TabsContent value="farmers"><FarmersTab /></TabsContent>
           <TabsContent value="categories"><CategoriesTab /></TabsContent>
