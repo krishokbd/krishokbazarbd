@@ -62,6 +62,122 @@ export type Database = {
         }
         Relationships: []
       }
+      order_items: {
+        Row: {
+          created_at: string
+          farmer_id: string | null
+          farmer_name: string | null
+          id: string
+          line_total: number
+          order_id: string
+          product_id: string
+          product_image: string | null
+          product_title: string
+          product_title_bn: string | null
+          quantity: number
+          unit: string | null
+          unit_price: number
+        }
+        Insert: {
+          created_at?: string
+          farmer_id?: string | null
+          farmer_name?: string | null
+          id?: string
+          line_total: number
+          order_id: string
+          product_id: string
+          product_image?: string | null
+          product_title: string
+          product_title_bn?: string | null
+          quantity: number
+          unit?: string | null
+          unit_price: number
+        }
+        Update: {
+          created_at?: string
+          farmer_id?: string | null
+          farmer_name?: string | null
+          id?: string
+          line_total?: number
+          order_id?: string
+          product_id?: string
+          product_image?: string | null
+          product_title?: string
+          product_title_bn?: string | null
+          quantity?: number
+          unit?: string | null
+          unit_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          created_at: string
+          customer_id: string
+          delivery_fee: number
+          id: string
+          item_count: number
+          notes: string | null
+          payment_method: string
+          shipping_address: string
+          shipping_city: string | null
+          shipping_district: string
+          shipping_name: string
+          shipping_phone: string
+          shipping_postcode: string | null
+          status: Database["public"]["Enums"]["order_status"]
+          subtotal: number
+          total: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          customer_id: string
+          delivery_fee?: number
+          id?: string
+          item_count?: number
+          notes?: string | null
+          payment_method?: string
+          shipping_address: string
+          shipping_city?: string | null
+          shipping_district: string
+          shipping_name: string
+          shipping_phone: string
+          shipping_postcode?: string | null
+          status?: Database["public"]["Enums"]["order_status"]
+          subtotal?: number
+          total?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          customer_id?: string
+          delivery_fee?: number
+          id?: string
+          item_count?: number
+          notes?: string | null
+          payment_method?: string
+          shipping_address?: string
+          shipping_city?: string | null
+          shipping_district?: string
+          shipping_name?: string
+          shipping_phone?: string
+          shipping_postcode?: string | null
+          status?: Database["public"]["Enums"]["order_status"]
+          subtotal?: number
+          total?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -69,6 +185,11 @@ export type Database = {
           full_name: string | null
           id: string
           phone: string | null
+          shipping_address: string | null
+          shipping_city: string | null
+          shipping_district: string | null
+          shipping_phone: string | null
+          shipping_postcode: string | null
           updated_at: string
         }
         Insert: {
@@ -77,6 +198,11 @@ export type Database = {
           full_name?: string | null
           id: string
           phone?: string | null
+          shipping_address?: string | null
+          shipping_city?: string | null
+          shipping_district?: string | null
+          shipping_phone?: string | null
+          shipping_postcode?: string | null
           updated_at?: string
         }
         Update: {
@@ -85,6 +211,11 @@ export type Database = {
           full_name?: string | null
           id?: string
           phone?: string | null
+          shipping_address?: string | null
+          shipping_city?: string | null
+          shipping_district?: string | null
+          shipping_phone?: string | null
+          shipping_postcode?: string | null
           updated_at?: string
         }
         Relationships: []
@@ -145,6 +276,12 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "farmer" | "customer"
+      order_status:
+        | "pending"
+        | "confirmed"
+        | "shipped"
+        | "delivered"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -273,6 +410,13 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "farmer", "customer"],
+      order_status: [
+        "pending",
+        "confirmed",
+        "shipped",
+        "delivered",
+        "cancelled",
+      ],
     },
   },
 } as const

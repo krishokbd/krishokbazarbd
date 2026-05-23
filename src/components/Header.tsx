@@ -4,12 +4,15 @@ import { useI18n } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { UserMenu } from "@/components/UserMenu";
 import { Link } from "@tanstack/react-router";
+import { useCart } from "@/lib/cart";
 
 const LOGO = "https://cdn.shopify.com/s/files/1/0991/0717/6761/files/Gemini_Generated_Image_k0x5bek0x5bek0x5.png?v=1778673806";
 
 export function Header() {
   const { lang, setLang, tr } = useI18n();
   const [open, setOpen] = useState(false);
+  const { count, setOpen: setCartOpen } = useCart();
+
 
   return (
     <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-xl border-b border-border/60">
@@ -45,9 +48,11 @@ export function Header() {
               {lang === "bn" ? "EN" : "বাং"}
             </button>
 
-            <button className="relative inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-muted transition" aria-label={tr("cart")}>
+            <button onClick={() => setCartOpen(true)} className="relative inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-muted transition" aria-label={tr("cart")}>
               <ShoppingCart className="h-5 w-5" />
-              <span className="absolute -top-0.5 -right-0.5 h-4 min-w-4 px-1 rounded-full bg-saffron text-[10px] font-bold text-white grid place-items-center">0</span>
+              {count > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 h-4 min-w-4 px-1 rounded-full bg-saffron text-[10px] font-bold text-white grid place-items-center">{count}</span>
+              )}
             </button>
 
             <div className="hidden md:flex items-center gap-2">
