@@ -83,14 +83,16 @@ function AdminShell() {
 
       <main className="container mx-auto px-4 py-6">
         <DashboardStats />
-        <Tabs defaultValue="products" className="mt-6">
+        <Tabs defaultValue="applications" className="mt-6">
           <TabsList className="flex flex-wrap h-auto">
+            <TabsTrigger value="applications">Applications</TabsTrigger>
             <TabsTrigger value="products">Products</TabsTrigger>
             <TabsTrigger value="farmers">Farmers</TabsTrigger>
             <TabsTrigger value="categories">Categories</TabsTrigger>
             <TabsTrigger value="reviews">Reviews</TabsTrigger>
             <TabsTrigger value="banners">Banners</TabsTrigger>
           </TabsList>
+          <TabsContent value="applications"><ApplicationsTab /></TabsContent>
           <TabsContent value="products"><ProductsTab /></TabsContent>
           <TabsContent value="farmers"><FarmersTab /></TabsContent>
           <TabsContent value="categories"><CategoriesTab /></TabsContent>
