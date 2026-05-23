@@ -1,11 +1,21 @@
 import { Star, ShoppingCart, BadgeCheck } from "lucide-react";
 import { type Product, farmers } from "@/data/mock";
 import { useI18n } from "@/lib/i18n";
+import { useCart } from "@/lib/cart";
+import { toast } from "sonner";
 
 export function ProductCard({ p }: { p: Product }) {
   const { lang } = useI18n();
+  const { add, setOpen } = useCart();
   const farmer = farmers.find(f => f.id === p.farmerId);
   const discount = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
+
+  const handleAdd = () => {
+    add(p, 1);
+    toast.success(`${lang === "bn" ? p.titleBn : p.title} added`, {
+      action: { label: "View cart", onClick: () => setOpen(true) },
+    });
+  };
 
   return (
     <article className="group relative bg-card rounded-2xl border border-border/60 overflow-hidden hover:shadow-elegant hover:border-primary/30 transition-all">
@@ -60,7 +70,7 @@ export function ProductCard({ p }: { p: Product }) {
             </div>
             <div className="text-[10px] text-muted-foreground">{p.unit}</div>
           </div>
-          <button className="h-9 w-9 rounded-full bg-primary text-primary-foreground grid place-items-center hover:bg-primary-glow transition shadow-soft" aria-label="add">
+          <button onClick={handleAdd} className="h-9 w-9 rounded-full bg-primary text-primary-foreground grid place-items-center hover:bg-primary-glow transition shadow-soft" aria-label={lang === "bn" ? "কার্টে যোগ" : "Add to cart"}>
             <ShoppingCart className="h-4 w-4" />
           </button>
         </div>
