@@ -15,6 +15,7 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogT
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Pencil, Plus, Trash2, CheckCircle2, XCircle, ArrowLeft, RotateCcw } from "lucide-react";
 import { useAuth } from "@/lib/auth";
+import { ApplicationsTab } from "@/components/admin/ApplicationsTab";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin CMS — Krishok Bazar" }, { name: "robots", content: "noindex" }] }),
