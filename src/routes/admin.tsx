@@ -16,6 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Pencil, Plus, Trash2, CheckCircle2, XCircle, ArrowLeft, RotateCcw } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import { ApplicationsTab } from "@/components/admin/ApplicationsTab";
+import { OrdersTab } from "@/components/admin/OrdersTab";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin CMS — Krishok Bazar" }, { name: "robots", content: "noindex" }] }),
@@ -83,8 +84,9 @@ function AdminShell() {
 
       <main className="container mx-auto px-4 py-6">
         <DashboardStats />
-        <Tabs defaultValue="applications" className="mt-6">
+        <Tabs defaultValue="orders" className="mt-6">
           <TabsList className="flex flex-wrap h-auto">
+            <TabsTrigger value="orders">Orders</TabsTrigger>
             <TabsTrigger value="applications">Applications</TabsTrigger>
             <TabsTrigger value="products">Products</TabsTrigger>
             <TabsTrigger value="farmers">Farmers</TabsTrigger>
@@ -92,6 +94,7 @@ function AdminShell() {
             <TabsTrigger value="reviews">Reviews</TabsTrigger>
             <TabsTrigger value="banners">Banners</TabsTrigger>
           </TabsList>
+          <TabsContent value="orders"><OrdersTab /></TabsContent>
           <TabsContent value="applications"><ApplicationsTab /></TabsContent>
           <TabsContent value="products"><ProductsTab /></TabsContent>
           <TabsContent value="farmers"><FarmersTab /></TabsContent>
