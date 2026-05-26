@@ -5,9 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: "Inter", "Noto Sans Bengali", system-ui, sans-serif;
-  --font-bengali: "Noto Sans Bengali", "Inter", sans-serif;
-  --font-display: "Plus Jakarta Sans", "Noto Sans Bengali", sans-serif;
+  --font-sans: "Hind Siliguri", "Inter", "Noto Sans Bengali", system-ui, sans-serif;
+  --font-bengali: "Hind Siliguri", "Noto Sans Bengali", sans-serif;
+  --font-display: "Hind Siliguri", "Plus Jakarta Sans", "Noto Sans Bengali", sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
